@@ -1,51 +1,57 @@
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View} from 'react-native';
+// import Task from './components/Task';
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <View style = {styles.tasksWrapper}>
+//         <Text style = {styles.sectionTitle}>Atoms.</Text>
+//         <View style = {styles.items}>
+//         <Task text = {'Task 1'}/>
+//         <Task text = {'Task 2'}/>
+
+//       </View>
+
+//      </View>
+
+//     </View>
+
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#E8EAED',
+//   },
+//   tasksWrapper: {
+//     paddingTop: 80,
+//     paddingHorizontal: 20,
+//   },
+//   sectionTitle: {
+//     fontSize: 24,
+//   },
+//   items: {},
+// });
+
+
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Welcome to the Learning App</Text>
-      <Button
-        title="Start Learning"
-        onPress={() => navigation.navigate('Learn')}
-      />
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Stack = createStackNavigator();
 
-function LearnScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Personalized Learning Journey Starts Here</Text>
-      // Placeholder for learning content
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
-
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Learn" component={LearnScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        {/* Add more screens here */}
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default App;
