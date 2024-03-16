@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Button from '../components/Button';
+import HomeButton from '../components/HomeButton';
+
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -18,6 +20,7 @@ const HomeScreen = ({ navigation }) => {
         title="Login"
         onPress={() => navigation.navigate('Login')}
       />
+
     </View>
     
   );
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    marginBottom: 200,
+    marginBottom: 150,
     alignItems: 'center',
   },
 
