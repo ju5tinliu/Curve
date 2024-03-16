@@ -1,36 +1,51 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Task from './components/Task';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style = {styles.tasksWrapper}>
-        <Text style = {styles.sectionTitle}>Atoms.</Text>
-        <View style = {styles.items}>
-        <Task text = {'Task 1'}/>
-        <Task text = {'Task 2'}/>
-
-      </View>
-
-     </View>
-
+      <Text>Welcome to the Learning App</Text>
+      <Button
+        title="Start Learning"
+        onPress={() => navigation.navigate('Learn')}
+      />
+      <StatusBar style="auto" />
     </View>
+  );
+}
 
+function LearnScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Personalized Learning Journey Starts Here</Text>
+      // Placeholder for learning content
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Learn" component={LearnScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EAED',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  tasksWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20,
-  },
-  sectionTitle: {
-    fontSize: 24,
-  },
-  items: {},
 });
+
+export default App;
