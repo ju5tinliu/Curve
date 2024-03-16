@@ -16,11 +16,13 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 6,
+    marginBottom: 15,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'Menlo', // Change this to the font family you want to use
   },
 });
 
