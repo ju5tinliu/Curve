@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState, useRef} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Animated } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 const StartUpScreen = ({ navigation }) => {
   const bubbleAnimatedValue = new Animated.Value(0);
+  // State to track the scale of each bubble
+  // const [bubbleScales, setBubbleScales] = useState({
+  //   'Rock Climbing': 0,
+  //   'Math': 0,
+  //   'Guitar': 0,
+  //   'Drum': 0
+  // });
+  // Animated values for each bubble
+  const rockClimbingScale = useRef(new Animated.Value(1)).current;
+  const mathScale = useRef(new Animated.Value(1)).current;
+  const guitarScale = useRef(new Animated.Value(1)).current;
+  const drumScale = useRef(new Animated.Value(1)).current;
 
+  
   const floatAnimation = (animatedValue) => {
     Animated.loop(
       Animated.sequence([
@@ -32,7 +45,7 @@ const StartUpScreen = ({ navigation }) => {
   };
 
   const bubbles = [
-    { id: 1, title: 'Rock Climbing', navigationTarget: 'Rock Climbing', side: 'left' },
+    { id: 1, title: 'Rock Climbing', navigationTarget: 'Rock Climbing', side: 'left', color: 'black' },
     { id: 2, title: 'Math', navigationTarget: 'Math Screen', side: 'right' },
     { id: 3, title: 'Guitar', navigationTarget: 'Learning Screen', side: 'left' },
     { id: 4, title: 'Drum', navigationTarget: 'Learnning Screen', side: 'right' },
@@ -61,7 +74,7 @@ const StartUpScreen = ({ navigation }) => {
             style={[
               styles.bubble,
               bubble.side === 'left' ? styles.leftBubble : styles.rightBubble,
-              { backgroundColor: index % 2 === 0 ? 'skyblue' : 'powderblue' },
+              { backgroundColor: index % 2 === 0 ? 'pink' : 'lightgreen' },
             ]}
           >
             <Text style={styles.bigbubbleText}>{bubble.title}</Text>
@@ -142,7 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: 300,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 50,
+    marginVertical: 0,
   },
   leftBubble: {
     alignSelf: 'flex-start',
@@ -181,7 +194,7 @@ const styles = StyleSheet.create({
   bigbubbleText: {
     fontSize: 50,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#000',
   },
   prizeIcon: {
     position: 'absolute',

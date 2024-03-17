@@ -3,58 +3,72 @@ import { ScrollView, View, Text, TouchableOpacity, StyleSheet, Image } from 'rea
 import Button from '../components/Button';
 
 const MathTest = ({ navigation }) => {
-  // Setting up an example question. Extend this logic for multiple questions.
+  const [coins, setCoins] = useState(0); // State for coins
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+
   const questions = [
     {
       questionText: "Multiplication and Division: What is 12×8? Divide the result by 4.",
       options: [
-        "A) 24",
-        "B) 96",
-        "C) 48",
-        "D) 3",
+        { text: "A) 24", isCorrect: true },
+        { text: "B) 96", isCorrect: false },
+        { text: "C) 48", isCorrect: false },
+        { text: "D) 3", isCorrect: false },
       ],
-      correctAnswer: "A) 24",
     },
     {
       questionText: "Word Problems: If a train travels 60 miles in 1 hour, how long will it take to travel 180 miles?",
       options: [
-        "A) 1 hour",
-        "B) 2 hours",
-        "C) 3 hours",
-        "D) 4 hours",
+        { text: "A) 1 hour", isCorrect: false },
+        { text: "B) 2 hours", isCorrect: false },
+        { text: "C) 3 hours", isCorrect: true },
+        { text: "D) 4 hours", isCorrect: false },
       ],
-      correctAnswer: "C) 3 hours",
     },
     {
       questionText: "Graph Interpretation: If a bar graph shows that 20 students like apples, 15 like bananas, and 5 like cherries, how many students were surveyed?",
       options: [
-        "A) 20",
-        "B) 40",
-        "C) 50",
-        "D) 60",
+        { text: "A) 20", isCorrect: false },
+        { text: "B) 40", isCorrect: true },
+        { text: "C) 50", isCorrect: false },
+        { text: "D) 60", isCorrect: false },
       ],
-      correctAnswer: "B) 40",
+    },
+    {
+      "questionText": "Exponents and Square Roots: What is the square of 9, and what is the square root of that result?",
+      "options": [
+        { "text": "A) 81 and 9", "isCorrect": true },
+        { "text": "B) 81 and 3", "isCorrect": false },
+        { "text": "C) 18 and 9", "isCorrect": false },
+        { "text": "D) 18 and 3", "isCorrect": false }
+      ]
+    },
+    {
+      "questionText": "Ratio and Proportion: If the ratio of cats to dogs in a pet store is 3:2, how many dogs are there if there are 12 cats?",
+      "options": [
+        { "text": "A) 6 dogs", "isCorrect": false },
+        { "text": "B) 8 dogs", "isCorrect": true },
+        { "text": "C) 10 dogs", "isCorrect": false },
+        { "text": "D) 14 dogs", "isCorrect": false }
+      ]
     },
   ];
 
-  // This is to keep track of the current question index
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const handleSelectOption = (option) => {
+    setSelectedOption(option);
+  };
 
-  // Function to handle when an answer is selected
-  const handleSelectOption = (selectedOption) => {
-    // Here you can handle the logic to check if the answer is correct,
-    // display feedback, and navigate to the next question
-    // For now, this just logs the selected option
-    console.log("Selected Option:", selectedOption);
-
-    // Navigate to the next question or show results
+  const handleNext = () => {
+    if (selectedOption && selectedOption.isCorrect) {
+      setCoins(coins + 1); // Increment coins if the answer is correct
+    }
+    setSelectedOption(null);
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
     } else {
-      // All questions answered
-      console.log("Test completed");
-      // Navigate to a results screen or reset the test
+      navigation.navigate('Results');
     }
   };
 
@@ -63,52 +77,66 @@ const MathTest = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image
-        source={require('../assets/doggyIcon.jpg')} // Adjust path as needed
+        source={require('../assets/doggyIcon.jpg')}
         style={styles.iconImage}
         resizeMode="contain"
       />
+      <View style={styles.coinCounterContainer}>
+        <Text style={styles.coinCounterText}>{coins} Coins</Text>
+      </View>
       <View style={styles.card}>
         <Text style={styles.question}>{currentQuestion.questionText}</Text>
       </View>
       {currentQuestion.options.map((option, index) => (
         <TouchableOpacity
           key={index}
-          style={styles.option}
+          style={[
+            styles.option,
+            selectedOption && selectedOption.isCorrect && selectedOption.text === option.text ? styles.correctOption : null,
+            selectedOption && !selectedOption.isCorrect && selectedOption.text === option.text ? styles.incorrectOption : null,
+          ]}
           onPress={() => handleSelectOption(option)}
         >
-          <Text style={styles.optionText}>{option}</Text>
+          <Text style={styles.optionText}>{option.text}</Text>
         </TouchableOpacity>
       ))}
+      <TouchableOpacity
+        style={[styles.nextButton, !selectedOption && { opacity: 0.5 }]}
+        onPress={handleNext}
+        disabled={!selectedOption}
+      >
+        <Text style={styles.nextButtonText}>Next</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  // You can reuse the styles from RockClimbingTest and adjust as necessary
   container: {
     flexGrow: 1,
     padding: 20,
-    backgroundColor: '#fff', // Soft background color
+    backgroundColor: '#fff',
   },
   iconImage: {
-    width: 300, // Adjust as needed
-    height: 300, // Adjust as needed
-    alignSelf: 'center', // Center the image
-    marginTop: 20, // Adjust space above
-    marginBottom: 20, // Adjust space below
+    width: 300,
+    height: 300,
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: -10,
   },
-  iconImage: {
-    width: 300, // Adjust the width as needed
-    height: 300, // Adjust the height as needed
-    alignSelf: 'center', // Center the image
-    marginTop: 0, // Add some space above the image
-    marginBottom: -10, // Add some space below the image
+  coinCounterContainer: {
+    position: 'absolute',
+    top: 30,
+    left: 30,
+    backgroundColor: 'gold',
+    padding: 5,
+    borderRadius: 20,
+    zIndex: 1, // Ensure the counter is above the image
   },
-  container: {
-    justifyContent: 'center', // Center the content vertically
-    flexGrow: 1,
-    padding: 20,
-    backgroundColor: '#fff', // Soft background color
+  coinCounterText: {
+    fontSize: 16,
+    color: 'black',
+    fontWeight: 'bold',
   },
   card: {
     backgroundColor: 'white',
@@ -145,13 +173,16 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
   },
-  selectedOption: {
-    borderColor: '#5DADE2', // Different color for selected option
+  correctOption: {
+    backgroundColor: '#C8E6C9', // Green background for correct answer
+  },
+  incorrectOption: {
+    backgroundColor: '#F5B7B1', // Red background for incorrect answer
   },
   optionText: {
     fontSize: 16,
     color: '#34495E',
-    textAlign: 'left', // Center the text within the option
+    textAlign: 'left',
   },
   nextButton: {
     backgroundColor: '#5DADE2',
@@ -165,7 +196,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  
 });
 
 export default MathTest;

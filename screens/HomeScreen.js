@@ -76,20 +76,7 @@ const HomeScreen = ({ navigation }) => {
       
         </Animated.View>
       </ImageBackground>
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerItem}>
-          <FontAwesome name="user" size={24} color="black" />
-          <Text style={styles.footerText}>Support</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerItem}>
-          <FontAwesome name="cog" size={24} color="black" />
-          <Text style={styles.footerText}>Setting</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerItem}>
-          <FontAwesome name="bell" size={24} color="black" />
-          <Text style={styles.footerText}>Alerts</Text>
-        </TouchableOpacity>
-      </View>
+   
     </Animated.View>
   );
 }

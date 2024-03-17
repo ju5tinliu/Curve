@@ -14,7 +14,11 @@ import RockClimbingTest from './screens/RockClimbingTest';
 import MathScreen from './screens/MathScreen';
 import MathTest from './screens/MathTest';
 import CurveCoinScreen from './screens/CurveCoinScreen';
-
+import NextQuestion from './screens/NextQuestion';
+import NextQuestion1 from './screens/NextQuestion1';
+import NextQuestion2 from './screens/NextQuestion2';
+import NextQuestion3 from './screens/NextQuestion3';
+import Results from './screens/Results';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +40,11 @@ export default function App() {
         <Stack.Screen name="Math Test" component={MathTest} />
         <Stack.Screen name="RockClimbingTest" component={RockClimbingTest} />
         <Stack.Screen name="Coin Screen" component={CurveCoinScreen} />
+        <Stack.Screen name="Next Question" component={NextQuestion} />
+        <Stack.Screen name="Next Question 1" component={NextQuestion1} />
+        <Stack.Screen name="Next Question 2" component={NextQuestion2} />
+        <Stack.Screen name="Next Question 3" component={NextQuestion3} />
+        <Stack.Screen name="Results" component={Results} />
       </Stack.Navigator>
     </NavigationContainer>
   );

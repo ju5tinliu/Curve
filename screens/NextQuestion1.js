@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native';
 
-const RockClimbingTest = ({ navigation }) => {
+
+const NextQuestion1 = ({ navigation }) => {
   const questions = [
     {
-      question: "What are the main differences between bouldering, sport climbing, and traditional (trad) climbing?",
+      question: "What is a 'crux' in rock climbing?",
       options: [
-        { text: "A) The height of the climbs", correct: false },
-        { text: "B) The type of gear used", correct: false },
-        { text: "C) Both A and B", correct: true },
-        { text: "D) The color of the climbing shoes", correct: false },
+        { text: "A) A difficult section of a route", correct: false },
+        { text: "B) A type of climbing shoe", correct: false },
+        { text: "C) A type of climbing hold", correct: false },
+        { text: "D) A piece of climbing gear", correct: true },
       ]
     },
     // Add more questions here
@@ -17,7 +18,7 @@ const RockClimbingTest = ({ navigation }) => {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [coins, setCoins] = useState(0);
+  const [coins, setCoins] = useState(2);
 
   const handleSelectOption = (option, index) => {
     setSelectedOption(index);
@@ -37,7 +38,7 @@ const RockClimbingTest = ({ navigation }) => {
   };
 
   const handleNavigateToNextQuestion = () => {
-    navigation.navigate('Next Question');
+    navigation.navigate('Next Question 2');
   };
 
   return (
@@ -163,4 +164,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RockClimbingTest;
+export default NextQuestion1;
+

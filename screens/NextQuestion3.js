@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native';
 
-const RockClimbingTest = ({ navigation }) => {
+
+const NextQuestion3 = ({ navigation }) => {
   const questions = [
     {
-      question: "What are the main differences between bouldering, sport climbing, and traditional (trad) climbing?",
+      question: "What is the most important piece of safety equipment for rock climbing?",
       options: [
-        { text: "A) The height of the climbs", correct: false },
-        { text: "B) The type of gear used", correct: false },
-        { text: "C) Both A and B", correct: true },
-        { text: "D) The color of the climbing shoes", correct: false },
+        { text: "A) Climbing Shoes", correct: false },
+        { text: "B) Helmet", correct: false },
+        { text: "C) Chalk Bag", correct: false },
+        { text: "D) Harness", correct: true },
       ]
     },
     // Add more questions here
@@ -17,7 +18,7 @@ const RockClimbingTest = ({ navigation }) => {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [coins, setCoins] = useState(0);
+  const [coins, setCoins] = useState(4);
 
   const handleSelectOption = (option, index) => {
     setSelectedOption(index);
@@ -37,7 +38,7 @@ const RockClimbingTest = ({ navigation }) => {
   };
 
   const handleNavigateToNextQuestion = () => {
-    navigation.navigate('Next Question');
+    navigation.navigate('Results');
   };
 
   return (
@@ -66,7 +67,7 @@ const RockClimbingTest = ({ navigation }) => {
         </TouchableOpacity>
       ))}
       <TouchableOpacity style={styles.nextButton} onPress={handleNavigateToNextQuestion}>
-        <Text style={styles.nextButtonText}>Go to Next Question</Text>
+        <Text style={styles.nextButtonText}>See Results</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -163,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RockClimbingTest;
+export default NextQuestion3;
