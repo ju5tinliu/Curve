@@ -1,10 +1,11 @@
 // components/Header.js
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
 
 const Header = ({ title }) => {
   return (
     <View style={styles.header}>
+      <StatusBar barStyle="light-content" backgroundColor="#007bff" />
       <Text style={styles.title}>{title}</Text>
     </View>
   );
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     alignItems: 'center',
+    paddingTop: StatusBar.currentHeight,
   },
   title: {
     color: '#fff',
