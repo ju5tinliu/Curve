@@ -1,6 +1,6 @@
 # Curve
 
-![Curve Logo](./assets/curve-logo-transparent.png)
+![Curve Logo](./assets/curve-logo-transparent-cropped.png)
 
 Curve is an innovative AI-powered app designed to flatten the learning curve, enabling users to master the basics of any skill in just 20 hours. Inspired by efficient learning principles, Curve offers a personalized learning experience through AI-generated content, including assessments, condensed textbooks, and practical steps.
 
