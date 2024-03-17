@@ -12,6 +12,7 @@ import {
   StatusBar,
 } from 'react-native';
 
+
 const SkillCreationScreen = ({ navigation }) => {
   const [skill, setSkill] = useState('');
 
@@ -130,6 +131,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     minWidth: '20%', // Ensure the input is wide enough for users to tap
   },
+
   submitButton: {
     marginTop: 50,
     backgroundColor: 'black',

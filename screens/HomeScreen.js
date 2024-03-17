@@ -1,9 +1,8 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, Animated, Dimensions } from 'react-native';
-import Button from '../components/Button';
-import HomeButton from '../components/HomeButton';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Image, Animated, Dimensions, TouchableOpacity } from 'react-native';
 import { ImageBackground } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons'; // Import icons from react-native-vector-icons
+import Button from '../components/Button';
 
 const HomeScreen = ({ navigation }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -60,21 +59,38 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.subtitle}>Continuous Growth,</Text>
           <Text style={styles.subtitle1}>Accessible To All.</Text>
       
-          <Button
-            title="Sign Up"
-            onPress={() => navigation.navigate('Sign Up')}
-            buttonStyle={styles.button}
-          />
-          <Button
-            title=" Login "
-            onPress={() => navigation.navigate('Login')}
-            buttonStyle={styles.button}
-          />
+          <View style={styles.content}>
+            <View style={styles.buttonsContainer}>
+              <Button
+                title="Sign Up"
+                onPress={() => navigation.navigate('Sign Up')}
+                buttonStyle={styles.button}
+              />
+              <Button
+                title=" Login "
+                onPress={() => navigation.navigate('Login')}
+                buttonStyle={styles.button}
+              />
+            </View>
+          </View>
       
         </Animated.View>
       </ImageBackground>
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.footerItem}>
+          <FontAwesome name="user" size={24} color="black" />
+          <Text style={styles.footerText}>Support</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerItem}>
+          <FontAwesome name="cog" size={24} color="black" />
+          <Text style={styles.footerText}>Setting</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerItem}>
+          <FontAwesome name="bell" size={24} color="black" />
+          <Text style={styles.footerText}>Alerts</Text>
+        </TouchableOpacity>
+      </View>
     </Animated.View>
-    
   );
 }
 
@@ -86,12 +102,11 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   content: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // Make sure to set a background color with opacity if needed
-    // for example: backgroundColor: 'rgba(255, 255, 255, 0.3)'
+    width: '100%',
+    paddingBottom: 200, // Adjust this value to create space for the footer
   },
   imageBackground: {
     flex: 1,
@@ -105,11 +120,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', // Makes the text thicker
     color: '#000', // Makes the text color black for darkness
     textAlign: 'center', // Centers the heading
-    paddingTop: -50,
-    paddingBottom: 10,
+    paddingTop: 200,
+    paddingBottom: 20,
     marginBottom: -20,
     fontStyle: 'italic',
-    
   },
   subtitle: {
     fontSize: 15,
@@ -124,11 +138,40 @@ const styles = StyleSheet.create({
   headerImage: {
     width: 120,
     height: 100,
-    marginBottom: -15,
+    marginTop: 200,
+    marginBottom: -220, 
+    
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    height: 60, // Adjust the height of the footer
+    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Background color of the footer
+    borderTopWidth: 1, // Add a border to separate footer from content
+    borderTopColor: '#ccc', // Border color
+  },
+  footerItem: {
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 12,
+    marginTop: 5,
+    fontFamily: 'Menlo',
+  },
+  buttonsContainer: {
+
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
   },
   button: {
     width: 200, 
     marginBottom: 10, 
+    marginHorizontal: 10,
   },
 });
 

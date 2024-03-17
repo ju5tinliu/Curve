@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import TeamScreen from './screens/TeamScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -12,9 +13,11 @@ import RockClimbingScreen from './screens/RockClimbingScreen';
 import RockClimbingTest from './screens/RockClimbingTest';
 import MathScreen from './screens/MathScreen';
 import MathTest from './screens/MathTest';
+import CurveCoinScreen from './screens/CurveCoinScreen';
 
 
 const Stack = createStackNavigator();
+
 
 export default function App() {
   return (
@@ -32,7 +35,7 @@ export default function App() {
         <Stack.Screen name="Math Screen" component={MathScreen} />
         <Stack.Screen name="Math Test" component={MathTest} />
         <Stack.Screen name="RockClimbingTest" component={RockClimbingTest} />
-        
+        <Stack.Screen name="Coin Screen" component={CurveCoinScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
